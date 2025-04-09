@@ -215,7 +215,7 @@
 
     // Configuração da API do OpenWeatherMap (plano gratuito)
     let weatherApiKey = "ab9672e995a26a94a9ed7eb8ab239683"; // Substitua pela sua chave
-    let location = "Ribeirão Preto,BR"; // Localização para obter a temperatura
+    let weatherLocation = "Ribeirão Preto,BR"; // Localização para obter a temperatura
 
     // Elementos do DOM
     const authButton = document.getElementById('authButton');
@@ -480,7 +480,7 @@
     // BUSCAR DADOS METEOROLÓGICOS via OpenWeatherMap (plano gratuito)
     async function fetchWeatherData() {
       try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${weatherApiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${weatherLocation}&units=metric&appid=${weatherApiKey}`);
         if(!response.ok) throw new Error('Falha ao buscar dados meteorológicos');
         const data = await response.json();
         const temp = Math.round(data.main.temp);
