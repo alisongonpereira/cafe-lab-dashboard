@@ -450,10 +450,30 @@
       const currentTemp = Math.max(currentRoomTemp, Math.round(newTemp));
       coffeeTemp.textContent = `${currentTemp}°C`;
 
-      const timePassedFactor = Math.min(1, elapsedMinutes / 240);
-      const newLevel = Math.max(0, Math.round(100 - (timePassedFactor * 100)));
-      levelText.textContent = `${newLevel}%`;
-      levelBar.style.width = `${newLevel}%`;
+			// Supondo:
+			const currentCoffeeTemp = coffeeTempAtual;   // a temperatura calculada do café
+			const currentRoomTemp   = roomTempAtual;     // a temperatura ambiente
+			const initialCoffeeTemp = 90;               // T0
+      // Exemplo de código para a barra refletir a diferença de temperatura
+			const maxDiff = initialCoffeeTemp - currentRoomTemp;              // Ex: 90 - 22 = 68
+			const currentDiff = currentCoffeeTemp - currentRoomTemp;          // Ex: 27 - 22 = 5
+			let coffeeLevel = 0;
+
+			if (currentDiff <= 0) {
+  			// Café já está em (ou abaixo de) temperatura ambiente
+  			coffeeLevel = 0;
+			} else {
+  			// Calcula a fração de diferença
+  			coffeeLevel = (currentDiff / maxDiff) * 100;
+			}
+
+			// Garante que fique no intervalo [0, 100]
+			coffeeLevel = Math.min(100, Math.max(0, coffeeLevel));
+
+			// Exibe na barra
+			const roundedLevel = Math.round(coffeeLevel);
+			levelText.textContent = `${roundedLevel}%`;
+			levelBar.style.width = `${roundedLevel}%`;
 
       const status = getCoffeeStatus(currentTemp);
       statusText.textContent = status.status;
