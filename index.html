@@ -446,14 +446,14 @@
       }
       
       const elapsedMinutes = (new Date() - latestCoffee.timestamp) / (1000 * 60);
-      // const currentRoomTemp = parseFloat(roomTemp.textContent) || DEFAULT_ROOM_TEMP;
+      const currentRoomTemp = parseFloat(roomTemp.textContent) || DEFAULT_ROOM_TEMP;
       const newTemp = currentRoomTemp + (INITIAL_COFFEE_TEMP - currentRoomTemp) * Math.exp(-COOLING_RATE * elapsedMinutes);
       const currentTemp = Math.max(currentRoomTemp, Math.round(newTemp));
       coffeeTemp.textContent = `${currentTemp}°C`;
 
 			// Supondo:
 			const currentCoffeeTemp = coffeeTempAtual;   // a temperatura calculada do café
-			const currentRoomTemp   = roomTempAtual;     // a temperatura ambiente
+			//const currentRoomTemp   = roomTempAtual;     // a temperatura ambiente
 			const initialCoffeeTemp = 90;               // T0
       // Exemplo de código para a barra refletir a diferença de temperatura
 			const maxDiff = initialCoffeeTemp - currentRoomTemp;              // Ex: 90 - 22 = 68
