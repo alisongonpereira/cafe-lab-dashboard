@@ -450,6 +450,7 @@
       const newTemp = currentRoomTemp + (INITIAL_COFFEE_TEMP - currentRoomTemp) * Math.exp(-COOLING_RATE * elapsedMinutes);
       const currentTemp = Math.max(currentRoomTemp, Math.round(newTemp));
       coffeeTemp.textContent = `${currentTemp}°C`;
+      const coffeeTempAtual = currentTemp; // Por exemplo, assumindo que 'currentTemp' seja o valor calculado
 
 			// Supondo:
 			const currentCoffeeTemp = coffeeTempAtual;   // a temperatura calculada do café
